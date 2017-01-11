@@ -96,10 +96,10 @@ function deploy(user) {
    var deployRequest = {
        chaincodeName: process.env.CORE_CHAINCODE_ID_NAME,
        fcn: "init",
-       args: ["a", "100", "b", "200"]
+       args: ["is there anybody out there?"]
    };
    // where is the chain code, ignored in dev mode
-   deployRequest.chaincodePath = "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02";
+   deployRequest.chaincodePath = "/opt/gopath/src/github.com/my_chaincode";
 
    // Issue the deploy request and listen for events
    var tx = user.deploy(deployRequest);
@@ -123,8 +123,8 @@ function query(user) {
    // Construct a query request
    var queryRequest = {
       chaincodeID: chaincodeID,
-      fcn: "query",
-      args: ["a"]
+      fcn: "read",
+      args: ["hello_world"]
    };
    // Issue the query request and listen for events
    var tx = user.query(queryRequest);
@@ -144,8 +144,8 @@ function invoke(user) {
    // Construct a query request
    var invokeRequest = {
       chaincodeID: chaincodeID,
-      fcn: "invoke",
-      args: ["a", "b", "1"]
+      fcn: "write",
+      args: ["key1", "value1"]
    };
    // Issue the invoke request and listen for events
    var tx = user.invoke(invokeRequest);
